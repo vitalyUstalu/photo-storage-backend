@@ -6,7 +6,7 @@ s3:
   aws_secret_access_key: "YOUR_AWS_SECRET_ACCESS_KEY"
   region_name: "us-east-1"
   public_url: "BUCKET_PUBLIC_URL"
-  # endpoint_url: "http://localhost:9000" # Example for MinIO
+  endpoint_url: "http://localhost:9000" # Example for MinIO
 oidc:
   client_id: "YOUR_OIDC_CLIENT_ID"
   client_secret: "YOUR_OIDC_CLIENT_SECRET"
@@ -15,3 +15,5 @@ jwt:
   secret_key: "a-very-secret-key"
   algorithm: "HS256"
   access_token_expire_minutes: 30
+frontend:
+  url: "http://localhost:3001"
