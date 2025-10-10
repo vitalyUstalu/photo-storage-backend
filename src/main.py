@@ -2,11 +2,20 @@
 from fastapi import FastAPI
 from starlette.middleware.sessions import SessionMiddleware
 from starlette_prometheus import PrometheusMiddleware, metrics
+from fastapi.middleware.cors import CORSMiddleware
 
 from src.api.v1 import auth, photos, hashtags
 from src.core.config import settings
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[settings.frontend.url],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.add_middleware(SessionMiddleware, secret_key=settings.jwt.secret_key)
 app.add_middleware(PrometheusMiddleware)

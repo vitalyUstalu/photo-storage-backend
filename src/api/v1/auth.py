@@ -38,7 +38,9 @@ async def callback(request: Request, db: Session = Depends(get_db)):
         user = users.create_user(db, user_info['sub'], user_info['email'])
 
     access_token = create_access_token(data={"sub": user.username})
-    return {"access_token": access_token, "token_type": "bearer"}
+    return RedirectResponse(
+        url=f"{settings.frontend.url}/login?token={access_token}"
+    )
 
 
 @router.get("/me")

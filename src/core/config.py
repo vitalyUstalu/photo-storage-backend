@@ -21,11 +21,15 @@ class JWTSettings(BaseSettings):
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
 
+class FrontendSettings(BaseSettings):
+    url: str
+
 class Settings(BaseSettings):
     database_url: str
     s3: S3Settings
     oidc: OIDCSettings
     jwt: JWTSettings = JWTSettings()
+    frontend: FrontendSettings
 
     model_config = SettingsConfigDict(
         env_file=".env",
